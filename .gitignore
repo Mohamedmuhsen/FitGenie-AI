@@ -1,0 +1,38 @@
+# Environment files
+.env
+.env.*
+*.env
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+.Python
+env/
+venv/
+ENV/
+env.bak/
+venv.bak/
+.pytest_cache/
+
+# Vector database / Local caches
+.chroma/
+.cache/
+
+# Node / React Native / Expo
+node_modules/
+.expo/
+.expo-shared/
+
+# IDE & OS files
+.vscode/
+.idea/
+.DS_Store
+Thumbs.db
+
+# Build & Coverage
+build/
+dist/
+coverage/
+*.egg-info/

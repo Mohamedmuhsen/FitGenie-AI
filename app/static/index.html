@@ -1,0 +1,1215 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>FitGenie AI — Premium AI Personal Fitness Coach</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Outfit:wght@400;500;600;700;800;900&family=Inter:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --bg-primary: #0D0D0D;
+      --bg-secondary: #161616;
+      --bg-card: #1F1F1F;
+      --accent-primary: #FFD60A;
+      --accent-secondary: #FFC300;
+      --text-primary: #FFFFFF;
+      --text-secondary: #BDBDBD;
+      --border-color: #2E2E2E;
+      --success: #2ECC71;
+      --warning: #F39C12;
+      --error: #E74C3C;
+      --font-heading: 'Outfit', sans-serif;
+      --font-body: 'Inter', sans-serif;
+    }
+
+    * {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+      font-family: var(--font-body);
+      -webkit-font-smoothing: antialiased;
+    }
+
+    body {
+      background-color: var(--bg-primary);
+      color: var(--text-primary);
+      min-height: 100vh;
+      display: flex;
+      flex-direction: column;
+    }
+
+    /* HEADER / NAVBAR */
+    header {
+      background-color: rgba(22, 22, 22, 0.85);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--border-color);
+      padding: 1.1rem 2rem;
+      position: sticky;
+      top: 0;
+      z-index: 1000;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    .brand {
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .brand-logo {
+      width: 36px;
+      height: 36px;
+      background: var(--accent-primary);
+      border-radius: 8px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-family: var(--font-heading);
+      font-weight: 900;
+      font-size: 1.25rem;
+      color: #000;
+    }
+
+    .brand-title {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      letter-spacing: -0.5px;
+      color: var(--text-primary);
+    }
+
+    .brand-title span {
+      color: var(--accent-primary);
+    }
+
+    .nav-actions {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .btn-docs {
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.85rem;
+      font-weight: 500;
+      padding: 0.5rem 1rem;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      transition: all 0.2s ease;
+    }
+
+    .btn-docs:hover {
+      color: var(--text-primary);
+      border-color: var(--accent-primary);
+    }
+
+    /* CONTAINER */
+    main {
+      flex: 1;
+      max-width: 1200px;
+      width: 100%;
+      margin: 0 auto;
+      padding: 2rem 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 3rem;
+    }
+
+    /* HERO SECTION */
+    .hero-section {
+      background: linear-gradient(180deg, var(--bg-secondary) 0%, var(--bg-primary) 100%);
+      border: 1px solid var(--border-color);
+      border-radius: 20px;
+      padding: 4rem 2.5rem;
+      text-align: center;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .hero-bg-overlay {
+      position: absolute;
+      top: -50%;
+      left: -50%;
+      width: 200%;
+      height: 200%;
+      background: radial-gradient(circle at 50% 30%, rgba(255, 214, 10, 0.08) 0%, transparent 60%);
+      pointer-events: none;
+    }
+
+    .hero-badge {
+      display: inline-block;
+      padding: 0.35rem 1rem;
+      background: rgba(255, 214, 10, 0.1);
+      border: 1px solid rgba(255, 214, 10, 0.3);
+      color: var(--accent-primary);
+      border-radius: 99px;
+      font-size: 0.75rem;
+      font-weight: 700;
+      letter-spacing: 1px;
+      text-transform: uppercase;
+      margin-bottom: 1.5rem;
+    }
+
+    .hero-title {
+      font-family: var(--font-heading);
+      font-size: 3.5rem;
+      font-weight: 900;
+      line-height: 1.1;
+      margin-bottom: 1rem;
+      letter-spacing: -1px;
+    }
+
+    .hero-subtitle {
+      font-size: 1.15rem;
+      color: var(--text-secondary);
+      max-width: 640px;
+      margin: 0 auto 2.5rem auto;
+      line-height: 1.6;
+    }
+
+    .hero-cta-group {
+      display: flex;
+      justify-content: center;
+      gap: 1rem;
+    }
+
+    .btn-primary {
+      background-color: var(--accent-primary);
+      color: #000;
+      border: none;
+      padding: 0.95rem 2.25rem;
+      border-radius: 8px;
+      font-weight: 700;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 0.5rem;
+    }
+
+    .btn-primary:hover {
+      background-color: var(--accent-secondary);
+      transform: translateY(-2px);
+      box-shadow: 0 8px 24px rgba(255, 214, 10, 0.25);
+    }
+
+    .btn-secondary {
+      background-color: transparent;
+      color: var(--text-primary);
+      border: 1px solid var(--border-color);
+      padding: 0.95rem 2rem;
+      border-radius: 8px;
+      font-weight: 600;
+      font-size: 1rem;
+      cursor: pointer;
+      transition: all 0.2s ease;
+    }
+
+    .btn-secondary:hover {
+      border-color: var(--text-secondary);
+      background-color: rgba(255, 255, 255, 0.03);
+    }
+
+    /* SECTION TITLES */
+    .section-header {
+      margin-bottom: 1.5rem;
+    }
+
+    .section-title {
+      font-family: var(--font-heading);
+      font-size: 1.75rem;
+      font-weight: 800;
+      color: var(--text-primary);
+    }
+
+    .section-desc {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      margin-top: 0.35rem;
+    }
+
+    /* FEATURE CARDS GRID */
+    .features-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 1.5rem;
+    }
+
+    .feature-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      padding: 1.75rem;
+      transition: all 0.2s ease;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+      cursor: pointer;
+    }
+
+    .feature-card:hover {
+      border-color: var(--accent-primary);
+      transform: translateY(-3px);
+    }
+
+    .feature-icon-wrapper {
+      width: 44px;
+      height: 44px;
+      border-radius: 8px;
+      background-color: rgba(255, 214, 10, 0.1);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      color: var(--accent-primary);
+    }
+
+    .feature-title {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+    }
+
+    .feature-desc {
+      font-size: 0.875rem;
+      color: var(--text-secondary);
+      line-height: 1.5;
+    }
+
+    /* MULTI-STEP ASSESSMENT WIZARD */
+    .wizard-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 2.5rem;
+      display: none;
+    }
+
+    .wizard-card.active {
+      display: block;
+    }
+
+    .wizard-progress {
+      display: flex;
+      justify-content: space-between;
+      margin-bottom: 2rem;
+      position: relative;
+    }
+
+    .progress-bar-bg {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      width: 100%;
+      height: 4px;
+      background-color: var(--border-color);
+      z-index: 1;
+      transform: translateY(-50%);
+    }
+
+    .progress-bar-fill {
+      position: absolute;
+      top: 50%;
+      left: 0;
+      height: 4px;
+      background-color: var(--accent-primary);
+      z-index: 1;
+      transform: translateY(-50%);
+      transition: width 0.3s ease;
+    }
+
+    .progress-step {
+      width: 32px;
+      height: 32px;
+      border-radius: 50%;
+      background-color: var(--bg-secondary);
+      border: 2px solid var(--border-color);
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-weight: 700;
+      font-size: 0.85rem;
+      z-index: 2;
+      transition: all 0.3s ease;
+    }
+
+    .progress-step.active {
+      border-color: var(--accent-primary);
+      background-color: var(--accent-primary);
+      color: #000;
+    }
+
+    .progress-step.completed {
+      border-color: var(--accent-primary);
+      background-color: var(--bg-card);
+      color: var(--accent-primary);
+    }
+
+    .form-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 1.5rem;
+      margin-bottom: 2rem;
+    }
+
+    .form-group {
+      display: flex;
+      flex-direction: column;
+      gap: 0.5rem;
+    }
+
+    .form-label {
+      font-size: 0.8rem;
+      font-weight: 700;
+      color: var(--text-secondary);
+      text-transform: uppercase;
+      letter-spacing: 0.5px;
+    }
+
+    .form-input {
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+      transition: border-color 0.2s ease;
+    }
+
+    .form-input:focus {
+      border-color: var(--accent-primary);
+    }
+
+    .wizard-actions {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+    }
+
+    /* AI PROCESSING SCREEN */
+    .processing-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      padding: 4rem 2rem;
+      text-align: center;
+      display: none;
+    }
+
+    .processing-card.active {
+      display: block;
+    }
+
+    .spinner {
+      width: 56px;
+      height: 56px;
+      border: 4px solid var(--border-color);
+      border-top-color: var(--accent-primary);
+      border-radius: 50%;
+      animation: spin 1s linear infinite;
+      margin: 0 auto 2rem auto;
+    }
+
+    @keyframes spin {
+      to { transform: rotate(360deg); }
+    }
+
+    .processing-steps {
+      max-width: 420px;
+      margin: 2rem auto 0 auto;
+      text-align: left;
+      display: flex;
+      flex-direction: column;
+      gap: 0.75rem;
+    }
+
+    .processing-step-item {
+      font-size: 0.9rem;
+      color: var(--text-secondary);
+      display: flex;
+      align-items: center;
+      gap: 0.75rem;
+    }
+
+    .processing-step-item.active {
+      color: var(--accent-primary);
+      font-weight: 600;
+    }
+
+    .processing-step-item.done {
+      color: var(--success);
+    }
+
+    /* RESULTS PAGE & EXPANDABLE CARDS */
+    .results-container {
+      display: none;
+      flex-direction: column;
+      gap: 1.5rem;
+    }
+
+    .results-container.active {
+      display: flex;
+    }
+
+    .result-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 12px;
+      overflow: hidden;
+      transition: border-color 0.2s ease;
+    }
+
+    .result-card-header {
+      padding: 1.5rem 1.75rem;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      cursor: pointer;
+      background-color: var(--bg-card);
+    }
+
+    .result-card-title-group {
+      display: flex;
+      align-items: center;
+      gap: 1rem;
+    }
+
+    .result-card-title {
+      font-family: var(--font-heading);
+      font-size: 1.2rem;
+      font-weight: 700;
+    }
+
+    .result-card-body {
+      padding: 1.5rem 1.75rem;
+      display: block;
+      border-top: 1px solid var(--border-color);
+      font-size: 0.925rem;
+      line-height: 1.65;
+      color: #E2E8F0;
+    }
+
+    .result-card-body.collapsed {
+      display: none;
+    }
+
+    .result-card-body h2 {
+      font-family: var(--font-heading);
+      font-size: 1.4rem;
+      font-weight: 800;
+      color: var(--accent-primary);
+      margin-bottom: 0.75rem;
+    }
+
+    .result-card-body h3 {
+      font-family: var(--font-heading);
+      font-size: 1.15rem;
+      font-weight: 700;
+      color: #FFF;
+      margin: 1.25rem 0 0.5rem 0;
+    }
+
+    .result-card-body h4 {
+      font-size: 1rem;
+      font-weight: 600;
+      color: var(--text-secondary);
+      margin: 0.75rem 0 0.35rem 0;
+    }
+
+    .result-card-body ul {
+      list-style-type: none;
+      padding-left: 0;
+    }
+
+    .result-card-body li {
+      margin-bottom: 0.5rem;
+      padding-left: 1.25rem;
+      position: relative;
+    }
+
+    .result-card-body li::before {
+      content: "•";
+      color: var(--accent-primary);
+      font-size: 1.2rem;
+      position: absolute;
+      left: 0;
+      top: -2px;
+    }
+
+    /* CHAT SCREEN */
+    .chat-card {
+      background-color: var(--bg-card);
+      border: 1px solid var(--border-color);
+      border-radius: 16px;
+      height: 600px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .chat-header {
+      padding: 1.25rem 1.5rem;
+      border-bottom: 1px solid var(--border-color);
+      font-family: var(--font-heading);
+      font-weight: 700;
+    }
+
+    .chat-messages {
+      flex: 1;
+      overflow-y: auto;
+      padding: 1.5rem;
+      display: flex;
+      flex-direction: column;
+      gap: 1.25rem;
+    }
+
+    .chat-bubble {
+      max-width: 80%;
+      padding: 1rem 1.25rem;
+      border-radius: 10px;
+      font-size: 0.925rem;
+      line-height: 1.6;
+      white-space: pre-wrap;
+    }
+
+    .chat-bubble.user {
+      align-self: flex-end;
+      background-color: var(--accent-primary);
+      color: #000;
+      font-weight: 500;
+    }
+
+    .chat-bubble.assistant {
+      align-self: flex-start;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+    }
+
+    .chat-input-container {
+      padding: 1rem 1.5rem;
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      gap: 0.75rem;
+    }
+
+    .chat-input {
+      flex: 1;
+      background-color: var(--bg-secondary);
+      border: 1px solid var(--border-color);
+      color: var(--text-primary);
+      padding: 0.85rem 1rem;
+      border-radius: 8px;
+      font-size: 0.95rem;
+      outline: none;
+    }
+
+    /* BOTTOM NAV BAR */
+    .bottom-nav {
+      position: sticky;
+      bottom: 0;
+      background-color: var(--bg-secondary);
+      border-top: 1px solid var(--border-color);
+      display: flex;
+      justify-content: space-around;
+      padding: 0.75rem 0.5rem;
+      z-index: 1000;
+    }
+
+    .nav-item {
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      gap: 0.25rem;
+      color: var(--text-secondary);
+      text-decoration: none;
+      font-size: 0.75rem;
+      font-weight: 600;
+      cursor: pointer;
+      background: none;
+      border: none;
+      padding: 0.25rem 0.5rem;
+      border-radius: 6px;
+      transition: color 0.2s ease;
+    }
+
+    .nav-item.active {
+      color: var(--accent-primary);
+    }
+
+    /* SVG ICONS INLINE STYLING */
+    .icon {
+      width: 20px;
+      height: 20px;
+      stroke: currentColor;
+      stroke-width: 2;
+      stroke-linecap: round;
+      stroke-linejoin: round;
+      fill: none;
+    }
+  </style>
+</head>
+<body>
+
+  <!-- HEADER -->
+  <header>
+    <div class="brand" onclick="showScreen('home')">
+      <div class="brand-logo">F</div>
+      <div class="brand-title">FitGenie <span>AI</span></div>
+    </div>
+    <div class="nav-actions">
+      <a href="/docs" target="_blank" class="btn-docs">API Documentation ↗</a>
+    </div>
+  </header>
+
+  <main>
+    <!-- SCREEN 1: HOME (LANDING EXPERIENCE) -->
+    <div id="screen-home" class="screen-view">
+      <!-- HERO -->
+      <section class="hero-section">
+        <div class="hero-bg-overlay"></div>
+        <span class="hero-badge">Next-Generation AI Fitness Architecture</span>
+        <h1 class="hero-title">FitGenie AI</h1>
+        <p class="hero-subtitle">Your AI-Powered Personal Fitness Coach. Powered by CrewAI multi-agent reasoning, evidence-based program design, and real-time nutritional tracking.</p>
+        <div class="hero-cta-group">
+          <button class="btn-primary" onclick="startAssessmentFlow()">
+            Start Your Fitness Journey
+            <svg class="icon" viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"></line><polyline points="12 5 19 12 12 19"></polyline></svg>
+          </button>
+          <button class="btn-secondary" onclick="scrollToFeatures()">Learn More</button>
+        </div>
+      </section>
+
+      <!-- FEATURE CARDS GRID -->
+      <section id="features" style="margin-top: 3rem;">
+        <div class="section-header">
+          <h2 class="section-title">Intelligent Fitness Capabilities</h2>
+          <p class="section-desc">Specialized AI agents working collaboratively to optimize your health.</p>
+        </div>
+
+        <div class="features-grid">
+          <div class="feature-card" onclick="quickFilterCard('card-workout')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v8H2z"></path></svg>
+            </div>
+            <h3 class="feature-title">AI Workout Planning</h3>
+            <p class="feature-desc">Multi-day progressive overload routines engineered for your specific experience level and goals.</p>
+          </div>
+
+          <div class="feature-card" onclick="quickFilterCard('card-nutrition')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            </div>
+            <h3 class="feature-title">Nutrition Planning</h3>
+            <p class="feature-desc">Caloric targets and macro splits calculated with Mifflin-St Jeor accuracy, matched with structured meal plans.</p>
+          </div>
+
+          <div class="feature-card" onclick="quickFilterCard('card-supplement')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path></svg>
+            </div>
+            <h3 class="feature-title">Supplement Guidance</h3>
+            <p class="feature-desc">Evidence-based supplementation recommendations specifying exact dosages, timing, and rationale.</p>
+          </div>
+
+          <div class="feature-card" onclick="quickFilterCard('card-injury')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            </div>
+            <h3 class="feature-title">Injury Prevention</h3>
+            <p class="feature-desc">Real-time biomechanical risk evaluation that flags hazardous movements and provides safe alternatives.</p>
+          </div>
+
+          <div class="feature-card" onclick="quickFilterCard('card-progress')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            </div>
+            <h3 class="feature-title">Progress Tracking</h3>
+            <p class="feature-desc">Time-series body metric analysis and workout consistency tracking to detect plateaus early.</p>
+          </div>
+
+          <div class="feature-card" onclick="quickFilterCard('card-restaurants')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            </div>
+            <h3 class="feature-title">Healthy Restaurants</h3>
+            <p class="feature-desc">Location-aware discovery of healthy dining spots with high-protein menu recommendations.</p>
+          </div>
+
+          <div class="feature-card" onclick="quickFilterCard('card-shopping')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            </div>
+            <h3 class="feature-title">Gym Gear Shopping</h3>
+            <p class="feature-desc">Curated gear and lifting apparel recommendations tailored to your budget and training focus.</p>
+          </div>
+
+          <div class="feature-card" onclick="showScreen('chat')">
+            <div class="feature-icon-wrapper">
+              <svg class="icon" viewBox="0 0 24 24"><path d="M13 2L3 14h9l-1 8 10-12h-9l1-8z"></path></svg>
+            </div>
+            <h3 class="feature-title">Motivation Coaching</h3>
+            <p class="feature-desc">Context-aware mental performance coaching tailored to your adherence metrics and goals.</p>
+          </div>
+        </div>
+      </section>
+    </div>
+
+    <!-- SCREEN 2: ASSESSMENT WIZARD -->
+    <div id="screen-wizard" class="wizard-card">
+      <div class="wizard-progress">
+        <div class="progress-bar-bg"></div>
+        <div id="progress-bar-fill" class="progress-bar-fill" style="width: 12.5%;"></div>
+        <div class="progress-step active" id="pstep-1">1</div>
+        <div class="progress-step" id="pstep-2">2</div>
+        <div class="progress-step" id="pstep-3">3</div>
+        <div class="progress-step" id="pstep-4">4</div>
+        <div class="progress-step" id="pstep-5">5</div>
+        <div class="progress-step" id="pstep-6">6</div>
+        <div class="progress-step" id="pstep-7">7</div>
+        <div class="progress-step" id="pstep-8">8</div>
+      </div>
+
+      <div class="section-header">
+        <h2 class="section-title" id="wizard-step-title">Step 1: Personal Information</h2>
+        <p class="section-desc" id="wizard-step-desc">Enter your basic demographic details.</p>
+      </div>
+
+      <div class="form-grid" id="wizard-form-content">
+        <!-- Dynamic wizard step content injected via JS -->
+      </div>
+
+      <div class="wizard-actions">
+        <button class="btn-secondary" id="wizard-prev-btn" onclick="prevWizardStep()" style="visibility: hidden;">Back</button>
+        <button class="btn-primary" id="wizard-next-btn" onclick="nextWizardStep()">Continue</button>
+      </div>
+    </div>
+
+    <!-- SCREEN 3: AI PROCESSING -->
+    <div id="screen-processing" class="processing-card">
+      <div class="spinner"></div>
+      <h2 class="section-title">Executing Multi-Agent System</h2>
+      <p class="section-desc">FitGenie AI specialized agents are evaluating your profile.</p>
+
+      <div class="processing-steps">
+        <div class="processing-step-item active" id="proc-step-1">Analyzing physical stats & health metrics...</div>
+        <div class="processing-step-item" id="proc-step-2">Designing progressive workout program...</div>
+        <div class="processing-step-item" id="proc-step-3">Calculating macros & meal plan...</div>
+        <div class="processing-step-item" id="proc-step-4">Evaluating biomechanical injury risks...</div>
+        <div class="processing-step-item" id="proc-step-5">Formulating supplement regimen...</div>
+        <div class="processing-step-item" id="proc-step-6">Locating healthy restaurant options...</div>
+      </div>
+    </div>
+
+    <!-- SCREEN 4: RESULTS DASHBOARD -->
+    <div id="screen-results" class="results-container">
+      <div class="section-header" style="display: flex; justify-content: space-between; align-items: center;">
+        <div>
+          <h2 class="section-title">Your AI Fitness Program</h2>
+          <p class="section-desc">Generated by FitGenie AI Multi-Agent Architecture.</p>
+        </div>
+        <button class="btn-secondary" onclick="startAssessmentFlow()">New Assessment</button>
+      </div>
+
+      <!-- WORKOUT CARD -->
+      <div class="result-card" id="card-workout">
+        <div class="result-card-header" onclick="toggleResultCard('workout-body')">
+          <div class="result-card-title-group">
+            <svg class="icon" style="color: var(--accent-primary);" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v8H2z"></path></svg>
+            <span class="result-card-title">Workout Program</span>
+          </div>
+          <span style="color: var(--text-secondary); font-size: 0.85rem;">Toggle</span>
+        </div>
+        <div id="workout-body" class="result-card-body">Loading workout plan...</div>
+      </div>
+
+      <!-- NUTRITION CARD -->
+      <div class="result-card" id="card-nutrition">
+        <div class="result-card-header" onclick="toggleResultCard('nutrition-body')">
+          <div class="result-card-title-group">
+            <svg class="icon" style="color: var(--accent-primary);" viewBox="0 0 24 24"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+            <span class="result-card-title">Nutrition & Meal Plan</span>
+          </div>
+          <span style="color: var(--text-secondary); font-size: 0.85rem;">Toggle</span>
+        </div>
+        <div id="nutrition-body" class="result-card-body">Loading nutrition plan...</div>
+      </div>
+
+      <!-- SUPPLEMENT CARD -->
+      <div class="result-card" id="card-supplement">
+        <div class="result-card-header" onclick="toggleResultCard('supplement-body')">
+          <div class="result-card-title-group">
+            <svg class="icon" style="color: var(--accent-primary);" viewBox="0 0 24 24"><path d="m10.5 20.5 10-10a4.95 4.95 0 1 0-7-7l-10 10a4.95 4.95 0 1 0 7 7Z"></path></svg>
+            <span class="result-card-title">Supplement Protocol</span>
+          </div>
+          <span style="color: var(--text-secondary); font-size: 0.85rem;">Toggle</span>
+        </div>
+        <div id="supplement-body" class="result-card-body">Loading supplement protocol...</div>
+      </div>
+
+      <!-- INJURY SAFETY CARD -->
+      <div class="result-card" id="card-injury">
+        <div class="result-card-header" onclick="toggleResultCard('injury-body')">
+          <div class="result-card-title-group">
+            <svg class="icon" style="color: var(--warning);" viewBox="0 0 24 24"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+            <span class="result-card-title">Injury Prevention & Safety</span>
+          </div>
+          <span style="color: var(--text-secondary); font-size: 0.85rem;">Toggle</span>
+        </div>
+        <div id="injury-body" class="result-card-body">Loading injury prevention notes...</div>
+      </div>
+
+      <!-- PROGRESS & MOTIVATION CARD -->
+      <div class="result-card" id="card-progress">
+        <div class="result-card-header" onclick="toggleResultCard('progress-body')">
+          <div class="result-card-title-group">
+            <svg class="icon" style="color: var(--accent-primary);" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+            <span class="result-card-title">Progress Analytics & Coaching</span>
+          </div>
+          <span style="color: var(--text-secondary); font-size: 0.85rem;">Toggle</span>
+        </div>
+        <div id="progress-body" class="result-card-body">Loading progress analytics...</div>
+      </div>
+
+      <!-- SHOPPING CARD -->
+      <div class="result-card" id="card-shopping">
+        <div class="result-card-header" onclick="toggleResultCard('shopping-body')">
+          <div class="result-card-title-group">
+            <svg class="icon" style="color: var(--accent-primary);" viewBox="0 0 24 24"><circle cx="9" cy="21" r="1"></circle><circle cx="20" cy="21" r="1"></circle><path d="M1 1h4l2.68 13.39a2 2 0 0 0 2 1.61h9.72a2 2 0 0 0 2-1.61L23 6H6"></path></svg>
+            <span class="result-card-title">Gym Shopping Recommendations</span>
+          </div>
+          <span style="color: var(--text-secondary); font-size: 0.85rem;">Toggle</span>
+        </div>
+        <div id="shopping-body" class="result-card-body">Loading shopping gear...</div>
+      </div>
+
+      <!-- RESTAURANTS CARD -->
+      <div class="result-card" id="card-restaurants">
+        <div class="result-card-header" onclick="toggleResultCard('restaurant-body')">
+          <div class="result-card-title-group">
+            <svg class="icon" style="color: var(--accent-primary);" viewBox="0 0 24 24"><path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"></path><circle cx="12" cy="10" r="3"></circle></svg>
+            <span class="result-card-title">Healthy Restaurant Options</span>
+          </div>
+          <span style="color: var(--text-secondary); font-size: 0.85rem;">Toggle</span>
+        </div>
+        <div id="restaurant-body" class="result-card-body">Loading healthy dining locations...</div>
+      </div>
+    </div>
+
+    <!-- SCREEN 5: CHAT ASSISTANT -->
+    <div id="screen-chat" class="screen-view" style="display: none;">
+      <div class="chat-card">
+        <div class="chat-header">Conversational AI Fitness Coach</div>
+        <div class="chat-messages" id="chat-messages">
+          <div class="chat-bubble assistant">Hello! I am FitGenie AI, your intelligent fitness assistant. Ask me anything about workout plans, nutrition, injury modifications, or progress tracking.</div>
+        </div>
+        <div class="chat-input-container">
+          <input type="text" id="chat-input" class="chat-input" placeholder="Ask your AI fitness coach..." onkeypress="if(event.key==='Enter') sendChatMessage()">
+          <button class="btn-primary" onclick="sendChatMessage()">Send</button>
+        </div>
+      </div>
+    </div>
+  </main>
+
+  <!-- BOTTOM NAVIGATION BAR -->
+  <nav class="bottom-nav">
+    <button class="nav-item active" id="nav-home" onclick="showScreen('home')">
+      <svg class="icon" viewBox="0 0 24 24"><path d="m3 9 9-7 9 7v11a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2z"></path></svg>
+      Home
+    </button>
+    <button class="nav-item" id="nav-wizard" onclick="startAssessmentFlow()">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M14 2H6a2 2 0 0 0-2 2v16a2 2 0 0 0 2 2h12a2 2 0 0 0 2-2V8z"></path><polyline points="14 2 14 8 20 8"></polyline></svg>
+      Wizard
+    </button>
+    <button class="nav-item" id="nav-workout" onclick="quickFilterCard('card-workout')">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M18 8h1a4 4 0 0 1 0 8h-1"></path><path d="M2 8h16v8H2z"></path></svg>
+      Workout
+    </button>
+    <button class="nav-item" id="nav-nutrition" onclick="quickFilterCard('card-nutrition')">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M12 2v20"></path><path d="M17 5H9.5a3.5 3.5 0 0 0 0 7h5a3.5 3.5 0 0 1 0 7H6"></path></svg>
+      Nutrition
+    </button>
+    <button class="nav-item" id="nav-progress" onclick="quickFilterCard('card-progress')">
+      <svg class="icon" viewBox="0 0 24 24"><polyline points="22 12 18 12 15 21 9 3 6 12 2 12"></polyline></svg>
+      Progress
+    </button>
+    <button class="nav-item" id="nav-chat" onclick="showScreen('chat')">
+      <svg class="icon" viewBox="0 0 24 24"><path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"></path></svg>
+      AI Chat
+    </button>
+  </nav>
+
+  <script>
+    // Global State & Persistent Storage
+    let currentWizardStep = 1;
+    let wizardData = {
+      age: 25,
+      gender: 'male',
+      weight_kg: 75,
+      height_cm: 175,
+      goal: 'muscle_gain',
+      experience_level: 'intermediate',
+      workout_days_per_week: 4,
+      diet_preference: 'high_protein',
+      injuries: ['shoulder'],
+      budget: 'medium',
+      current_weight_kg: 75,
+      previous_weight_kg: 76,
+      workouts_completed: 12,
+      workouts_planned: 16
+    };
+
+    function renderMarkdown(md) {
+      if (!md) return '';
+      let html = md
+        .replace(/^## (.*$)/gim, '<h2>$1</h2>')
+        .replace(/^### (.*$)/gim, '<h3>$1</h3>')
+        .replace(/^#### (.*$)/gim, '<h4>$1</h4>')
+        .replace(/\*\*(.*?)\*\*/g, '<strong>$1</strong>')
+        .replace(/\*(.*?)\*/g, '<em>$1</em>')
+        .replace(/^`\[(.*?)\]`/gim, '<span style="color:var(--accent-primary); font-weight:700;">[$1]</span>')
+        .replace(/^- (.*$)/gim, '<li>$1</li>');
+      
+      return html.split('\n').join('<br>');
+    }
+
+    function showScreen(screenId) {
+      document.getElementById('screen-home').style.display = (screenId === 'home') ? 'block' : 'none';
+      document.getElementById('screen-wizard').classList.toggle('active', screenId === 'wizard');
+      document.getElementById('screen-processing').classList.toggle('active', screenId === 'processing');
+      document.getElementById('screen-results').classList.toggle('active', screenId === 'results');
+      document.getElementById('screen-chat').style.display = (screenId === 'chat') ? 'block' : 'none';
+
+      // Highlight Active Nav
+      document.querySelectorAll('.nav-item').forEach(item => item.classList.remove('active'));
+      const activeNav = document.getElementById('nav-' + (screenId === 'results' ? 'workout' : screenId));
+      if (activeNav) activeNav.classList.add('active');
+    }
+
+    function scrollToFeatures() {
+      document.getElementById('features').scrollIntoView({ behavior: 'smooth' });
+    }
+
+    function startAssessmentFlow() {
+      currentWizardStep = 1;
+      showScreen('wizard');
+      renderWizardStep();
+    }
+
+    function quickFilterCard(cardId) {
+      showScreen('results');
+      const targetCard = document.getElementById(cardId);
+      if (targetCard) {
+        targetCard.scrollIntoView({ behavior: 'smooth' });
+        const bodyId = cardId.replace('card-', '') + '-body';
+        const bodyEl = document.getElementById(bodyId);
+        if (bodyEl) bodyEl.classList.remove('collapsed');
+      }
+    }
+
+    const wizardStepsConfig = [
+      { title: "Step 1: Personal Details", desc: "Select your age and gender.", render: () => `
+        <div class="form-group"><label class="form-label">Age</label><input type="number" id="w-age" class="form-input" value="${wizardData.age}"></div>
+        <div class="form-group"><label class="form-label">Gender</label><select id="w-gender" class="form-input"><option value="male" ${wizardData.gender==='male'?'selected':''}>Male</option><option value="female" ${wizardData.gender==='female'?'selected':''}>Female</option></select></div>
+      `},
+      { title: "Step 2: Body Measurements", desc: "Enter your physical dimensions.", render: () => `
+        <div class="form-group"><label class="form-label">Weight (kg)</label><input type="number" id="w-weight" class="form-input" value="${wizardData.weight_kg}"></div>
+        <div class="form-group"><label class="form-label">Height (cm)</label><input type="number" id="w-height" class="form-input" value="${wizardData.height_cm}"></div>
+      `},
+      { title: "Step 3: Primary Fitness Goal", desc: "Choose what you want to achieve.", render: () => `
+        <div class="form-group" style="grid-column: span 2;"><label class="form-label">Fitness Goal</label>
+        <select id="w-goal" class="form-input">
+          <option value="muscle_gain" ${wizardData.goal==='muscle_gain'?'selected':''}>Muscle Gain (Hypertrophy)</option>
+          <option value="fat_loss" ${wizardData.goal==='fat_loss'?'selected':''}>Fat Loss & Toning</option>
+          <option value="maintenance" ${wizardData.goal==='maintenance'?'selected':''}>Maintenance & Health</option>
+        </select></div>
+      `},
+      { title: "Step 4: Experience Level", desc: "How long have you been training?", render: () => `
+        <div class="form-group" style="grid-column: span 2;"><label class="form-label">Experience</label>
+        <select id="w-exp" class="form-input">
+          <option value="beginner" ${wizardData.experience_level==='beginner'?'selected':''}>Beginner (< 1 year)</option>
+          <option value="intermediate" ${wizardData.experience_level==='intermediate'?'selected':''}>Intermediate (1-3 years)</option>
+          <option value="advanced" ${wizardData.experience_level==='advanced'?'selected':''}>Advanced (3+ years)</option>
+        </select></div>
+      `},
+      { title: "Step 5: Workout Schedule", desc: "How many days per week can you train?", render: () => `
+        <div class="form-group" style="grid-column: span 2;"><label class="form-label">Days Per Week (1 to 7)</label>
+        <input type="number" id="w-days" class="form-input" value="${wizardData.workout_days_per_week}" min="1" max="7"></div>
+      `},
+      { title: "Step 6: Nutrition Target", desc: "Confirm your dietary preference.", render: () => `
+        <div class="form-group" style="grid-column: span 2;"><label class="form-label">Diet Preference</label>
+        <select id="w-diet" class="form-input">
+          <option value="high_protein" ${wizardData.diet_preference==='high_protein'?'selected':''}>High Protein Focus</option>
+          <option value="balanced" ${wizardData.diet_preference==='balanced'?'selected':''}>Standard Balanced Diet</option>
+          <option value="vegetarian" ${wizardData.diet_preference==='vegetarian'?'selected':''}>Vegetarian / Plant Based</option>
+        </select></div>
+      `},
+      { title: "Step 7: Injury History", desc: "List any joint or muscle injuries to prevent harm.", render: () => `
+        <div class="form-group" style="grid-column: span 2;"><label class="form-label">Injuries (comma separated, e.g. shoulder, knee)</label>
+        <input type="text" id="w-injuries" class="form-input" value="${wizardData.injuries.join(', ')}"></div>
+      `},
+      { title: "Step 8: Budget & Equipment", desc: "Set your preferences for gear recommendations.", render: () => `
+        <div class="form-group" style="grid-column: span 2;"><label class="form-label">Budget Preference</label>
+        <select id="w-budget" class="form-input">
+          <option value="low" ${wizardData.budget==='low'?'selected':''}>Low / Budget Friendly</option>
+          <option value="medium" ${wizardData.budget==='medium'?'selected':''}>Medium / Balanced</option>
+          <option value="high" ${wizardData.budget==='high'?'selected':''}>High / Premium</option>
+        </select></div>
+      `}
+    ];
+
+    function renderWizardStep() {
+      const cfg = wizardStepsConfig[currentWizardStep - 1];
+      document.getElementById('wizard-step-title').innerText = cfg.title;
+      document.getElementById('wizard-step-desc').innerText = cfg.desc;
+      document.getElementById('wizard-form-content').innerHTML = cfg.render();
+
+      document.getElementById('progress-bar-fill').style.width = (currentWizardStep / 8 * 100) + '%';
+      
+      for(let i=1; i<=8; i++) {
+        const stepEl = document.getElementById('pstep-' + i);
+        stepEl.classList.remove('active', 'completed');
+        if (i === currentWizardStep) stepEl.classList.add('active');
+        else if (i < currentWizardStep) stepEl.classList.add('completed');
+      }
+
+      document.getElementById('wizard-prev-btn').style.visibility = (currentWizardStep > 1) ? 'visible' : 'hidden';
+      document.getElementById('wizard-next-btn').innerText = (currentWizardStep === 8) ? 'Generate AI Program' : 'Continue';
+    }
+
+    function saveCurrentStepData() {
+      if (currentWizardStep === 1) {
+        wizardData.age = parseInt(document.getElementById('w-age').value) || 25;
+        wizardData.gender = document.getElementById('w-gender').value;
+      } else if (currentWizardStep === 2) {
+        wizardData.weight_kg = parseFloat(document.getElementById('w-weight').value) || 75;
+        wizardData.height_cm = parseFloat(document.getElementById('w-height').value) || 175;
+      } else if (currentWizardStep === 3) {
+        wizardData.goal = document.getElementById('w-goal').value;
+      } else if (currentWizardStep === 4) {
+        wizardData.experience_level = document.getElementById('w-exp').value;
+      } else if (currentWizardStep === 5) {
+        wizardData.workout_days_per_week = parseInt(document.getElementById('w-days').value) || 4;
+      } else if (currentWizardStep === 6) {
+        wizardData.diet_preference = document.getElementById('w-diet').value;
+      } else if (currentWizardStep === 7) {
+        wizardData.injuries = document.getElementById('w-injuries').value.split(',').map(s=>s.trim()).filter(Boolean);
+      } else if (currentWizardStep === 8) {
+        wizardData.budget = document.getElementById('w-budget').value;
+      }
+    }
+
+    function nextWizardStep() {
+      saveCurrentStepData();
+      if (currentWizardStep < 8) {
+        currentWizardStep++;
+        renderWizardStep();
+      } else {
+        submitWizardAndExecuteAI();
+      }
+    }
+
+    function prevWizardStep() {
+      saveCurrentStepData();
+      if (currentWizardStep > 1) {
+        currentWizardStep--;
+        renderWizardStep();
+      }
+    }
+
+    async function fetchEndpoint(endpoint, payload) {
+      try {
+        const res = await fetch(endpoint, {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify(payload)
+        });
+        if (!res.ok) throw new Error(`HTTP ${res.status}`);
+        return await res.json();
+      } catch (e) {
+        console.warn(`Fetch error for ${endpoint}:`, e);
+        return { status: 'fallback', response: `Information temporarily unavailable for ${endpoint}.` };
+      }
+    }
+
+    async function submitWizardAndExecuteAI() {
+      showScreen('processing');
+
+      // Animate loading steps
+      setTimeout(() => document.getElementById('proc-step-1').className = 'processing-step-item done', 400);
+      setTimeout(() => document.getElementById('proc-step-2').className = 'processing-step-item active', 600);
+      setTimeout(() => document.getElementById('proc-step-2').className = 'processing-step-item done', 1000);
+      setTimeout(() => document.getElementById('proc-step-3').className = 'processing-step-item active', 1200);
+
+      try {
+        const [wRes, nRes, sRes, iRes, prRes, shRes, rRes] = await Promise.all([
+          fetchEndpoint('/workout', wizardData),
+          fetchEndpoint('/nutrition', wizardData),
+          fetchEndpoint('/supplements', { assessment: wizardData }),
+          fetchEndpoint('/assessment', wizardData),
+          fetchEndpoint('/progress', wizardData),
+          fetchEndpoint('/shopping', { query: "shoes", budget: wizardData.budget }),
+          fetchEndpoint('/restaurants', { location: "New York, NY", query: "healthy" })
+        ]);
+
+        document.getElementById('workout-body').innerHTML = renderMarkdown(wRes.response || JSON.stringify(wRes));
+        document.getElementById('nutrition-body').innerHTML = renderMarkdown(nRes.response || JSON.stringify(nRes));
+        document.getElementById('supplement-body').innerHTML = renderMarkdown(sRes.response || JSON.stringify(sRes));
+        document.getElementById('injury-body').innerHTML = renderMarkdown(iRes.response || JSON.stringify(iRes));
+        document.getElementById('progress-body').innerHTML = renderMarkdown(prRes.response || JSON.stringify(prRes));
+        document.getElementById('shopping-body').innerHTML = renderMarkdown(shRes.response || JSON.stringify(shRes));
+        document.getElementById('restaurant-body').innerHTML = renderMarkdown(rRes.response || JSON.stringify(rRes));
+
+        showScreen('results');
+      } catch (err) {
+        alert('Error generating program: ' + err.message);
+        showScreen('home');
+      }
+    }
+
+    function toggleResultCard(bodyId) {
+      const bodyEl = document.getElementById(bodyId);
+      if (bodyEl) bodyEl.classList.toggle('collapsed');
+    }
+
+    async function sendChatMessage() {
+      const input = document.getElementById('chat-input');
+      const text = input.value.trim();
+      if (!text) return;
+
+      const container = document.getElementById('chat-messages');
+      container.innerHTML += `<div class="chat-bubble user">${text}</div>`;
+      input.value = '';
+      container.scrollTop = container.scrollHeight;
+
+      const loadingId = 'loading-' + Date.now();
+      container.innerHTML += `<div class="chat-bubble assistant" id="${loadingId}">Thinking... Routing through FitGenie AI agents...</div>`;
+      container.scrollTop = container.scrollHeight;
+
+      try {
+        const res = await fetch('/chat', {
+          method: 'POST',
+          headers: {'Content-Type': 'application/json'},
+          body: JSON.stringify({ message: text, user_context: wizardData })
+        });
+        const data = await res.json();
+        const msgEl = document.getElementById(loadingId);
+        if (msgEl) {
+          msgEl.innerHTML = renderMarkdown(data.response || JSON.stringify(data));
+        }
+      } catch (e) {
+        const msgEl = document.getElementById(loadingId);
+        if (msgEl) msgEl.innerText = "Error: " + e.message;
+      }
+      container.scrollTop = container.scrollHeight;
+    }
+  </script>
+</body>
+</html>

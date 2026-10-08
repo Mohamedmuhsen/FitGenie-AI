@@ -174,17 +174,17 @@ LLM_BASE_URL=https://openrouter.ai/api/v1
 LLM_TEMPERATURE=0.7
 LLM_TIMEOUT=60
 HOST=0.0.0.0
-PORT=8000
+PORT=8005
 DEBUG=true
 ```
 
 ### 5. Launch Application
 ```bash
-uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
+uvicorn app.main:app --host 0.0.0.0 --port 8005 --reload
 ```
 
-- **Web Dashboard:** Access at [http://localhost:8000](http://localhost:8000)
-- **Swagger Documentation:** Access at [http://localhost:8000/docs](http://localhost:8000/docs)
+- **Web Dashboard:** Access at [http://localhost:8005](http://localhost:8005)
+- **Swagger Documentation:** Access at [http://localhost:8005/docs](http://localhost:8005/docs)
 
 ---
 
@@ -200,7 +200,7 @@ uvicorn app.main:app --host 0.0.0.0 --port 8000 --reload
 | `TAVILY_API_KEY` | Tavily Web Search Key *(Placeholder)* | `tvly-placeholder` | No |
 | `GOOGLE_MAPS_API_KEY` | Google Maps API Key *(Placeholder)* | `google-maps-placeholder` | No |
 | `HOST` | Server bind host | `0.0.0.0` | No |
-| `PORT` | Server bind port | `8000` | No |
+| `PORT` | Server bind port | `8005` | No |
 
 ---
 

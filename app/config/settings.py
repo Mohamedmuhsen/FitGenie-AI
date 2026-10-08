@@ -39,7 +39,7 @@ class Settings(BaseSettings):
     
     # Server Settings
     HOST: str = "0.0.0.0"
-    PORT: int = 8000
+    PORT: int = 8005
     DEBUG: bool = True
     
     model_config = SettingsConfigDict(
